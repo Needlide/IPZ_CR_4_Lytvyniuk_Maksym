@@ -42,8 +42,25 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    ItemsList()
+                    MyApp()
                 }
+            }
+        }
+    }
+}
+
+@Composable
+fun MyApp() {
+    val navController = rememberNavController()
+
+    NavHost(navController = navController, startDestination = "textList") {
+        composable("textList") {
+            TextListScreen(navController = navController)
+        }
+        composable("text/{text}") { backStackEntry ->
+            val text = backStackEntry.arguments?.getString("text")
+            text?.let {
+                TextDetailScreen(text = it)
             }
         }
     }
