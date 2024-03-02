@@ -49,6 +49,21 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+@Composable
+fun TextList(texts: List<String>, onItemClick: (String) -> Unit) {
+    LazyColumn {
+        items(texts) { text ->
+            Text(
+                text = text,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp)
+                    .clickable { onItemClick(text) }
+            )
+        }
+    }
+}
+
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
