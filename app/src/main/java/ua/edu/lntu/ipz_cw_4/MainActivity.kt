@@ -49,6 +49,22 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun TextDetailScreen(text: String) {
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                title = { Text("Text Detail") }
+            )
+        }
+    ) {innerPadding -> Column(modifier = Modifier.padding(innerPadding),
+        verticalArrangement = Arrangement.spacedBy(16.dp)){
+        TextDetail(text = text)}
+    }
+}
+
 @Composable
 fun TextDetail(text: String) {
     Text(
