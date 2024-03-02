@@ -49,6 +49,28 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun TextListScreen(navController: NavController) {
+    val texts = listOf("Text 1", "Text 2", "Text 3")
+
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                title = { Text("Text List") }
+            )
+        }
+    ) {
+        innerPadding -> Column(modifier = Modifier.padding(innerPadding),
+            verticalArrangement = Arrangement.spacedBy(16.dp)){
+        TextList(texts = texts, onItemClick = { text ->
+            navController.navigate("text/$text")
+        })
+    }
+    }
+}
+
 @Composable
 fun TextList(texts: List<String>, onItemClick: (String) -> Unit) {
     LazyColumn {
